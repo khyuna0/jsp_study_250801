@@ -11,6 +11,8 @@
 	<hr>
 	<% // 선언문 -> ( <%! ) 전역변수 선언할 때 사용 (잘 안씀)
 	
+	request.setCharacterEncoding("UTF-8"); // 한글 깨짐 방지 
+	
 	String memberId = request.getParameter("memberid"); // 가입 회원 아이디
 	String membePw = request.getParameter("memberpw"); // 가입 회원 비밀번호
 	String memberName = request.getParameter("membername"); // 가입 회원 이름

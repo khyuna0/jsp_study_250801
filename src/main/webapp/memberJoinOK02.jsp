@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 가입 확인</title>
+<title>회원 가입 확인 2</title>
 </head>
 <body>
 	<h2>회원 가입 정보</h2>
@@ -30,8 +30,8 @@
 	// getParameterValues -> 문자열 배열 형태로 가져오기
 	//String[] memberHobbys = request.getParameterValues("hobby"); // 가입 회원 취미
 	
-	// -> 취미 체크박스를 맵 자료구조로 받기
-	//Map<String, String[]> hobbyMap = request.getParameterMap(); 
+	//-> 취미 체크박스를 맵 자료구조로 받기
+	Map<String, String[]> hobbyMap = request.getParameterMap(); 
 	
 	// 취미 체크박스를 열거형으로 받기 -> 모든 파라미터의 이름만 가져오기
 	Enumeration<String> hobbyEnum = request.getParameterNames();
@@ -50,32 +50,42 @@
 		<li>이메일 : <%=memberEmail1%>@<%=memberEmail2%></li>
 		<li>취미 : 
 		
-			<% // get
-//			 if (hobbyMap.isEmpty()) {
-//				 out.println("취미없음"); 
-//			 } else {
-//				 for ( String hobby : hobbyMap.get("hobby")) { // hobbyMap의 키 값만 가져오기
-//					 	out.println(hobby);
-				
-				 	
-				// 열거형
-				String[] hobby = null;
-				if(hobbyEnum.hasMoreElements()) {
+			 <%
+				if(hobbyMap.get("hobby") == null) {
 					out.println("취미없음");
 				} else {
-					while ( hobbyEnum.hasMoreElements()) {
-						String hobby = hobbyEnum.nextElement();
-					if (hobby.equals("hobby"))
-					 hobby = request.getParameterValues(hobby);
-					}					
-				}
-				for ( String hobby : hobby){
-					out.print (hobby + "/");
+					for(String hobby : hobbyMap.get("hobby")) { //hobbyMap의 key값만 가져오기
+							out.println(hobby);						
+						}
 				}
 				
-			%> 
+			%>
+				 	
+			<%
+				String[] hobbies = null;
+				if(!hobbyEnum.hasMoreElements()) {
+					out.println("취미없음");
+				} else {
+					while(hobbyEnum.hasMoreElements()) {
+						String hobby = hobbyEnum.nextElement();
+						//System.out.println(hobby);
+						if(hobby.equals("hobby")) {							 
+							hobbies = request.getParameterValues(hobby);
+						}							
+					}
+					if(hobbies != null) {
+						for(String hobby :hobbies) {
+							out.print(hobby +  " / ");
+						}
+					}	
+				}
+				
+			%>
+				
 		</li>
-		<li>자기소개 : <%=memberIntro %></li>
+		
+		<li>자기소개 : <%= memberIntro %></li>
+		
 	</ul>
 	
 </body>

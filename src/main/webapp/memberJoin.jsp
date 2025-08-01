@@ -10,16 +10,16 @@
 	<h2>회원가입 양식</h2>
 	<hr>
 	
-	<form action="memberJoinOK.jsp"> <!-- 폼으로 감싸고 액션 자동완성 -->
+	<form action="memberJoinOK.jsp" method="post"> <!-- post -> 폼 데이터에서 입력된 부분 가리기  -->
 	
-		아이디 : <input type="text" name ="memberid"><br><br>
-		비밀번호 : <input type="password" name ="memberpw"><br><br>
-		이름 : <input type = "text" name = "membername"><br><br>
-		나이 	: <input type = "text" name = "memberage"><br><br>
+		아이디 : <input type="text" name ="memberid" required="required"><br><br>
+		비밀번호 : <input type="password" name ="memberpw" required="required"><br><br>
+		이름 : <input type = "text" name = "membername" maxlength="10" disabled="disabled" value = "홍길동" ><br><br>
+		나이 	: <input type = "text" name = "memberage" value = "20" readonly="readonly"><br><br>
 		성별 : <input type = "radio" name = "gender" value="male" checked="checked" >남자 
 		<input type = "radio" name = "gender" value="female">여자 <br><br>	
 		<!-- 라디오 타입 이름을 똑같이 써줘야 하나만 선택 가능 / value 값 필수-->
-		이메일 : <input type="text" name = "email"> @ 
+		이메일 : <input type="text" name = "email" size = "10" placeholder="abc"> @ 
 		<select name = "email2">
 			<option value ="naver.com" >naver.com</option>
 			<option value ="gmail.com">gmail.com</option>	
@@ -35,7 +35,7 @@
 		<br><br>
 		
 		자기소개 : 
-		<textarea rows="5" cols="50" name ="intro"></textarea>
+		<textarea rows="5" cols="50" name ="intro" placeholder="10자 이상"></textarea>
 		<br><br>
 		
 		<input type ="submit" value ="회원가입">
